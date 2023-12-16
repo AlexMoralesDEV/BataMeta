@@ -1,0 +1,27 @@
+<%- include('includes/header') %>
+
+<section class="container">
+    <header>
+        <h2>Entre ou Registre-se</h2>
+    </header>
+    <main>
+        <form action="/registrar" method="post">
+            <div class="inputs">
+                <label for="usuario">Digite seu usuário</label>
+                <input type="text" name="" id="usuario" class="validar">
+            </div>
+            <div class="inputs">
+                <label for="senha">Digite sua senha</label>
+                <input type="password" name="" id="senha" class="validar senha">
+            </div>
+    
+            <button type="submit" id="registrar">Resgistrar</button>
+            <button type="submit" formaction="/logar" id="entrar">Entrar</button>
+        </form>
+    </main>
+    <footer>
+        <p id="recuperarSenha">Esqueceu sua senha?</p>
+    </footer>
+</section>
+
+<%- include('includes/footer') %>
