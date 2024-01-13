@@ -1,11 +1,19 @@
-const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const { DataTypes } = require('sequelize');
+const conne = require('../db/conne');
 
-const LoginSchema = mongoose.Schema({
-    usuario: String,
-    senha: String
-});
-
-const LoginModel = mongoose.model('Login', LoginSchema);
+const LoginModel = conne.define('Login', {
+    usuario: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        required: true
+    },
+    senha: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        required: true
+    }
+})
 
 class Login {
     constructor(body) {
@@ -21,13 +29,41 @@ class Login {
         if (this.body.senha.length < 3 || this.body.senha.length > 50) { this.errors.push('Quantidade de caracteres inválida!') };
     }
 
-    async registrar(){
+    async registrar() {
         this.valida();
+        this.gerarHash();
 
-        if(this.errors.length > 0) return;
+        const user = await this.usuarioExiste();
+        if (user) this.errors.push('Usuário com esse nome já cadastrado!');
+
+        if (this.errors.length > 0) return;
 
         this.user = await LoginModel.create(this.body);
+
+        return this.user;
     }
+
+    async usuarioExiste() {
+        const user = await LoginModel.findOne({ where: { usuario: this.body.usuario }, plain: true });
+        return user;
+    }
+
+    async entrar() {
+        try {
+            this.valida();
+
+            const { senha } = this.body;
+            const user = await this.usuarioExiste();
+
+            if (!user) this.errors.push('Usuário com esse nome não existe!');
+            const compararSenha = bcrypt.compareSync(senha, user.senha);
+            if (!compararSenha) this.errors.push('As senhas são diferentes!');
+
+            return user.id;
+        }catch(err){
+            console.log(err);
+        }
+    };
 
     verificarTipoDosDados() {
         for (let key in this.body) {
@@ -39,6 +75,18 @@ class Login {
             senha: this.body.senha
         }
     }
+
+    gerarHash() {
+        const { usuario, senha } = this.body;
+
+        const salt = bcrypt.genSaltSync(10);
+        const senhaHash = bcrypt.hashSync(senha, salt);
+
+        this.body = {
+            usuario,
+            senha: senhaHash
+        }
+    }
 }
 
-module.exports = Login;
+module.exports = { Login, LoginModel };
