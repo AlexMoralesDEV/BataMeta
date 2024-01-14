@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo');
 const session = require('express-session');
 const flash = require('connect-flash');
 const { LoginModel } = require('./src/models/LoginModel');
+const { MetaModel } = require('./src/models/MetaModel');
 const { middleware } = require('./src/middlewares/middleware');
 
 app.set('view engine', 'ejs');

@@ -56,8 +56,11 @@ class Login {
             const user = await this.usuarioExiste();
 
             if (!user) this.errors.push('Usuário com esse nome não existe!');
+
+            if (this.errors.length > 0) return;
+
             const compararSenha = bcrypt.compareSync(senha, user.senha);
-            if (!compararSenha) this.errors.push('As senhas são diferentes!');
+            if (!compararSenha) this.errors.push('Usuário e/ou senha incorretos!');
 
             return user.id;
         }catch(err){

@@ -12,17 +12,19 @@
 }
 
 body{
+    color: #FFF;
+    background: linear-gradient(to left bottom, var(--cor-destaque) -100%, var(--cor-escura) 60%) fixed;
+}
+
+.flex-container{
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFF;
-    background: linear-gradient(to left bottom, var(--cor-destaque) -100%, var(--cor-escura) 60%) fixed;
-
 }
 
 .container{
-    width: 350px;
+    max-width: 350px;
     background-color: #ffffff18;
     border-radius: 15px;
     padding: 25px;
@@ -44,7 +46,7 @@ body{
 .container h2{
     text-align: center;
     margin-bottom: 5px;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .inputs{
