@@ -33,6 +33,11 @@ class Meta{
         this.errors = [];
         this.meta = null;
     }
+
+    async cadastrar(){
+        this.meta = await MetaModel.create(this.body);
+        return this.meta;
+    }
 }
 
 module.exports = { MetaModel, Meta };
