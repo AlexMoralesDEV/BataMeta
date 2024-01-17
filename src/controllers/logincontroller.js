@@ -8,7 +8,6 @@ exports.registrar = async (req, res, next) => {
         if (login.errors.length > 0) {
 
             req.flash('errors', login.errors);
-            console.log(req.flash('errors'));
 
             req.session.save(() => {
                 res.redirect('back');
@@ -18,9 +17,8 @@ exports.registrar = async (req, res, next) => {
 
         req.session.userId = login.user.id;
         req.flash('success', 'Usuário cadastrado com sucesso!');
-        console.log(req.flash('success'));
         req.session.save(() => {
-            res.render('dashboard');
+            res.redirect('/dashboard');
         });
     } catch (err) {
         console.log(err)
@@ -37,7 +35,6 @@ exports.logar = async (req, res, next) => {
 
         if (user.errors.length > 0) {
             req.flash('errors', user.errors);
-            console.log(req.flash('errors'));
 
             req.session.save(() => {
                 res.redirect('/');
@@ -46,25 +43,43 @@ exports.logar = async (req, res, next) => {
             return
         }
 
-        const userMetas = await Login.buscarMetasdoUserporId(id);
-        console.log(userMetas);
-
-        const metaAtual = userMetas[0];
-
-        console.log(metaAtual);
-        
         req.session.userId = id;
         req.flash('success', 'Usuário entrou com sucesso!');
-        console.log(req.flash('success'));
 
         req.session.save(() => {
-            res.render('dashboard', { userMetas, metaAtual });
+            res.redirect('/dashboard')
         });
     } catch (err) {
         console.log(err);
     }
 };
 
-exports.dashboard = (req, res) => {
-    res.render('dashboard');
+exports.dashboard = async (req, res) => {
+    try {
+        const userMetas = await Login.buscarMetasdoUserporId(req.session.userId);
+        console.log(userMetas);
+
+        const metaAtual = userMetas.find(elemento => {
+            return elemento.id == req.params.id;
+        });
+
+        console.log(metaAtual);
+
+        res.render('dashboard', { userMetas, metaAtual });
+    } catch (error) {
+        console.log(error)
+    }
 }
+
+exports.dashboardInicial = async (req, res) => {
+    try {
+        const userMetas = await Login.buscarMetasdoUserporId(req.session.userId);
+        console.log(userMetas);
+
+        const metaAtual = userMetas[0];
+
+        res.render('dashboard', { userMetas, metaAtual });
+    } catch (error) {
+        console.log(error);
+    };
+};
