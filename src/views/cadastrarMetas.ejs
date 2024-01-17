@@ -6,6 +6,7 @@
                 <h2>Nova Meta</h2>
             </header>
             <main>
+                <%- include('includes/messages') %>
                 <form action="/registrarMeta" method="post">
                     <input type="hidden" name="LoginId" value="<%= user %>">
                     <div class="inputs">
@@ -24,7 +25,7 @@
                 </form>
             </main>
             <footer>
-                <p id="">Voltar</p>
+                <p id=""><a href="/dashboard">Voltar</a></p>
             </footer>
         </section>
     </div>

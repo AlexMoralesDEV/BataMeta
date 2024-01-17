@@ -1,10 +1,5 @@
 <%- include('includes/header') %>
 
-<!-- <%- userMetas.length %>
-
-<% userMetas.forEach( elemento => { %>
-    <%- elemento.nome %>
-<% }) %> -->
 <% if(metaAtual && userMetas){ %>
 <main class="grid-container">
     <div class="cards">   
@@ -12,21 +7,21 @@
                 <div class="card-title">
                     <h2>Nome</h2>
                 </div>
-                <h2><%- metaAtual.nome %></h2>
+                <h1><%- metaAtual.nome %></h1>
             </div>
 
             <div class="card-item">
                 <div class="card-title">
                     <h2>Valor</h2>
                 </div>
-                <h2><%- metaAtual.valorMeta %></h2>
+                <h1><%- metaAtual.valorMeta %></h1>
             </div>
 
             <div class="card-item">
                 <div class="card-title">
                     <h2>Prazo</h2>
                 </div>
-                <h2><%- metaAtual.prazoMeta %></h2>
+                <h1><%- metaAtual.prazoMeta %></h1>
             </div>
 
             <div class="card-item">
@@ -36,13 +31,25 @@
             </div>
         </div>
         <div class="charts">
-            <div class="chart-item info"><a href="/registrarMeta">Adicionar Meta</a></div>
+            <div class="chart-item info"></div>
             <div class="chart-item more">
-                <form action="/dashboard" method="post">
-                    <input type="hidden" name="<%= user %>">
-                    <input type="text" name="valorMeta">
-                    <button>Atualizar</button>
-                </form>
+                <div class="selecionarMeta">
+                    <label for="escolherMeta">Escolha a sua meta: </label>
+                    <select name="escolherMeta" id="escolherMeta">
+                        <option value="">Atual</option>
+                        <% userMetas.forEach( elemento => { %>
+                            <option value="/dashboard/<%- elemento.id %>"><%- elemento.nome %></option>
+                        <% }) %>
+                        <option value="/registrarMeta">Adicionar Meta</option>
+                    </select>
+                </div>
+                <div class="form">
+                    <form action="/dashboard" method="post">
+                        <input type="hidden" name="<%= user %>">
+                        <input type="text" name="valorMeta">
+                        <button>Atualizar</button>
+                    </form>
+                </div>
             </div>
         </div>
 </main>
