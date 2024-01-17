@@ -48,6 +48,17 @@ class Login {
         return user;
     }
 
+    static async buscarMetasdoUserporId(id){
+        const { MetaModel } = require('./MetaModel');
+        const user = await LoginModel.findOne({ where: { id: id }, include: MetaModel});
+
+        const userMetas = user.dataValues.Meta.map(( element ) => {
+            return element.dataValues;
+        })
+
+        return userMetas;
+    }
+
     async entrar() {
         try {
             this.valida();

@@ -7,6 +7,7 @@ const { somenteUsuarios } = require('./src/middlewares/middleware');
 
 route.get('/', indexcontroller.index);
 route.get('/registrarMeta', somenteUsuarios, metacontroller.cadastroMetas)
+route.get('/dashboard', somenteUsuarios, logincontroller.dashboard)
 
 route.post('/registrar', logincontroller.registrar);
 route.post('/logar', somenteUsuarios, logincontroller.logar);

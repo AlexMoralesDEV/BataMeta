@@ -46,14 +46,25 @@ exports.logar = async (req, res, next) => {
             return
         }
 
+        const userMetas = await Login.buscarMetasdoUserporId(id);
+        console.log(userMetas);
+
+        const metaAtual = userMetas[0];
+
+        console.log(metaAtual);
+        
         req.session.userId = id;
         req.flash('success', 'Usuário entrou com sucesso!');
         console.log(req.flash('success'));
 
         req.session.save(() => {
-            res.render('dashboard');
+            res.render('dashboard', { userMetas, metaAtual });
         });
     } catch (err) {
         console.log(err);
     }
 };
+
+exports.dashboard = (req, res) => {
+    res.render('dashboard');
+}
