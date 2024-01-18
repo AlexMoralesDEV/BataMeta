@@ -83,3 +83,8 @@ exports.dashboardInicial = async (req, res) => {
         console.log(error);
     };
 };
+
+exports.sair = (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+};

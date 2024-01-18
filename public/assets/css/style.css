@@ -15,6 +15,17 @@ body {
     background: linear-gradient(to left bottom, var(--cor-destaque) -100%, var(--cor-escura) 60%) fixed;
 }
 
+a{
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover{
+    color: var(--cor-destaque);
+    transition: 0.5s all;
+}
+
 .flex-container {
     height: 100vh;
     display: flex;
@@ -141,10 +152,84 @@ body {
 
 .info{
     grid-area: info;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .more{
     grid-area: more;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.selecionarMeta{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner{
+    display: flex;
+    justify-content: space-between;
+}
+
+select{
+    width: 100% !important;
+    padding: 15px;
+    background-color: #ffffff3f;
+    color: #FFF;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin: 10px 0;
+}
+
+option {
+    background-color: #ffffff3f;
+    color: #333;
+    padding: 20px;
+}
+  
+option:hover {
+    background-color: #12e6433f;
+    color: #FFF;
+}
+
+.form{
+    width: 100%;
+}
+
+.form input{
+    width: 100%;
+    padding: 15px;
+    background-color: #ffffff3f;
+    color: #FFF;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin: 10px 0;
+}
+
+.form button{
+    width: 100%;
+    padding: 15px;
+    background-color: var(--cor-destaque);
+    color: #FFF;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+button{
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.excluir{
+    background-color: #dd1818 !important;
 }
 
 @media screen and (max-width: 992px) {
@@ -168,6 +253,10 @@ body {
         grid-template-areas:
             "info"
             "more";
+    }
+
+    .info{
+        grid-template-columns: 1fr;
     }
 }
 

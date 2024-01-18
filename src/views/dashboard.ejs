@@ -1,58 +1,85 @@
 <%- include('includes/header') %>
 
-<% if(metaAtual && userMetas){ %>
-<main class="grid-container">
-    <div class="cards">   
-            <div class="card-item">
-                <div class="card-title">
-                    <h2>Nome</h2>
+    <% if(metaAtual && userMetas){ %>
+        <main class="grid-container">
+            <div class="cards">
+                <div class="card-item">
+                    <div class="card-title">
+                        <h2>Nome</h2>
+                    </div>
+                    <h1><%- metaAtual.nome %></h1>
                 </div>
-                <h1><%- metaAtual.nome %></h1>
-            </div>
 
-            <div class="card-item">
-                <div class="card-title">
-                    <h2>Valor</h2>
+                <div class="card-item">
+                    <div class="card-title">
+                        <h2>Valor</h2>
+                    </div>
+                    <h1 id="valorMeta"><%- metaAtual.valorMeta %></h1>
+                    <p id="valorAtual">
+                        <% if(metaAtual.valorAtual==null){ %>
+                            R$ 0,00
+                            <% }else{ %>
+                                <%- metaAtual.valorAtual %>
+                                    <% } %>
+                    </p>
                 </div>
-                <h1><%- metaAtual.valorMeta %></h1>
-            </div>
 
-            <div class="card-item">
-                <div class="card-title">
-                    <h2>Prazo</h2>
+                <div class="card-item">
+                    <div class="card-title">
+                        <h2>Prazo</h2>
+                    </div>
+                    <h1 id="prazoMeta"><%- metaAtual.prazoMeta %></h1>
                 </div>
-                <h1><%- metaAtual.prazoMeta %></h1>
-            </div>
 
-            <div class="card-item">
-                <div class="card-title">
-                    <h2>Progresso</h2>
+                <div class="card-item">
+                    <div class="card-title">
+                        <h2>Progresso</h2>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="charts">
-            <div class="chart-item info"></div>
-            <div class="chart-item more">
-                <div class="selecionarMeta">
-                    <label for="escolherMeta">Escolha a sua meta: </label>
-                    <select name="escolherMeta" id="escolherMeta">
-                        <option value="">Atual</option>
-                        <% userMetas.forEach( elemento => { %>
-                            <option value="/dashboard/<%- elemento.id %>"><%- elemento.nome %></option>
-                        <% }) %>
-                        <option value="/registrarMeta">Adicionar Meta</option>
-                    </select>
+            <div class="charts">
+                <div class="chart-item info">
+                    <div id="progress-chart"></div>
+                    <div id=""> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo itaque blanditiis corrupti saepe minima at rem similique animi officia vel illo esse repellendus totam, quis aut, quos mollitia obcaecati.
+                    Consequuntur reiciendis neque ut quisquam commodi fugiat necessitatibus dolorem aspernatur rem ad nisi iure officiis nobis suscipit, aliquid doloremque eos exercitationem dolores delectus! Officiis commodi recusandae error porro sunt ratione.
+                    Eligendi quam doloremque laboriosam, vitae deleniti cupiditate excepturi, quae ullam accusamus labore optio totam at aperiam delectus consectetur? Dolorum fugit sapiente aspernatur ut unde molestiae veniam alias quaerat nihil natus!</div>
                 </div>
-                <div class="form">
-                    <form action="/dashboard" method="post">
-                        <input type="hidden" name="<%= user %>">
-                        <input type="text" name="valorMeta">
-                        <button>Atualizar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-</main>
-<% } %>
 
-<%- include('includes/footer') %>
+                <div class="chart-item more">
+                    <div class="selecionarMeta">
+                        <label for="escolherMeta">
+                            <div class="inner">
+                                <h2> Escolha a sua meta: </h2>
+                                <p></p>
+                            </div>
+                        </label>
+                        <select name="escolherMeta" id="escolherMeta">
+                            <option value="">Atual</option>
+                            <% userMetas.forEach( elemento=> { %>
+                                <option value="/dashboard/<%- elemento.id %>"><%- elemento.nome %></option>
+                                <% }) %>
+                                    <option value="/registrarMeta">Adicionar Meta</option>
+                        </select>
+                    </div>
+
+                    <div class="form">
+                        <div class="inner">
+                            <h2> Adicionar Valor: </h2>
+                            <p></p>
+                        </div>
+                        <form action="/dashboard" method="post">
+                            <input type="hidden" name="<%= user %>">
+                            <input type="number" name="valorMeta">
+                            <button>Atualizar</button>
+                        </form>
+                            <button class="excluir">Excluir</button>
+                    </div>
+
+                    <a href="/sair">Sair</a>
+                </div>
+
+            </div>
+        </main>
+        <% } %>
+
+            <%- include('includes/footer') %>
