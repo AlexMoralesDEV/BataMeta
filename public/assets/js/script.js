@@ -19,6 +19,11 @@ function porcentagemMeta() {
   return resultado.toFixed(0);
 }
 
+function formatarData(){
+  const datePrazo = new Date(prazoMeta.innerText);
+  prazoMeta.innerText = `${datePrazo.getDate()}/${datePrazo.getMonth() + 1}/${datePrazo.getFullYear()}`
+}
+
 let options = {
   series: [porcentagemMeta()],
   chart: {
@@ -58,3 +63,4 @@ let options = {
 var chart = new ApexCharts(document.querySelector("#progress-chart"), options);
 chart.render();
 
+formatarData();
