@@ -1,11 +1,15 @@
 <%- include('includes/header') %>
 
+<main class="grid-container">
+    <!-- <header class="header">a</header> -->
     <% if(metaAtual && userMetas){ %>
-        <main class="grid-container">
             <div class="cards">
                 <div class="card-item">
                     <div class="card-title">
                         <h2>Nome</h2>
+                        <span class="material-symbols-outlined">
+                            sell
+                        </span>
                     </div>
                     <h1><%- metaAtual.nome %></h1>
                 </div>
@@ -13,6 +17,9 @@
                 <div class="card-item">
                     <div class="card-title">
                         <h2>Valor</h2>
+                        <span class="material-symbols-outlined">
+                            finance_chip
+                        </span>
                     </div>
                     <h1 id="valorMeta"><%- metaAtual.valorMeta %></h1>
                     <p id="valorAtual">
@@ -27,6 +34,9 @@
                 <div class="card-item">
                     <div class="card-title">
                         <h2>Prazo</h2>
+                        <span class="material-symbols-outlined">
+                            calendar_month
+                        </span>
                     </div>
                     <h1 id="prazoMeta"><%- metaAtual.prazoMeta %></h1>
                 </div>
@@ -40,9 +50,18 @@
             <div class="charts">
                 <div class="chart-item info">
                     <div id="progress-chart"></div>
-                    <div id=""> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo itaque blanditiis corrupti saepe minima at rem similique animi officia vel illo esse repellendus totam, quis aut, quos mollitia obcaecati.
-                    Consequuntur reiciendis neque ut quisquam commodi fugiat necessitatibus dolorem aspernatur rem ad nisi iure officiis nobis suscipit, aliquid doloremque eos exercitationem dolores delectus! Officiis commodi recusandae error porro sunt ratione.
-                    Eligendi quam doloremque laboriosam, vitae deleniti cupiditate excepturi, quae ullam accusamus labore optio totam at aperiam delectus consectetur? Dolorum fugit sapiente aspernatur ut unde molestiae veniam alias quaerat nihil natus!</div>
+                    <div id="">
+                        <h2>Lorem ipsum dolor sit amet.</h2>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo itaque
+                        blanditiis corrupti saepe minima at rem similique animi officia vel illo esse repellendus totam,
+                        quis aut, quos mollitia obcaecati.
+                        Consequuntur reiciendis neque ut quisquam commodi fugiat necessitatibus dolorem aspernatur rem
+                        ad nisi iure officiis nobis suscipit, aliquid doloremque eos exercitationem dolores delectus!
+                        Officiis commodi recusandae error porro sunt ratione.
+                        Eligendi quam doloremque laboriosam, vitae deleniti cupiditate excepturi, quae ullam accusamus
+                        labore optio totam at aperiam delectus consectetur? Dolorum fugit sapiente aspernatur ut unde
+                        molestiae veniam alias quaerat nihil natus!
+                    </div>
                 </div>
 
                 <div class="chart-item more">
@@ -67,12 +86,12 @@
                             <h2> Adicionar Valor: </h2>
                             <p></p>
                         </div>
-                        <form action="/dashboard" method="post">
-                            <input type="hidden" name="<%= user %>">
+                        <form action="/dashboard/<%= metaAtual.id %>" method="post">
+                            <input type="hidden" name="UserId" value="<%= user %>">
                             <input type="number" name="valorMeta">
                             <button>Atualizar</button>
                         </form>
-                            <button class="excluir">Excluir</button>
+                        <button class="excluir">Excluir</button>
                     </div>
 
                     <a href="/sair">Sair</a>
