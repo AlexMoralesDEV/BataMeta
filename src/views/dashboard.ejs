@@ -1,104 +1,110 @@
 <%- include('includes/header') %>
 
-<main class="grid-container">
-    <!-- <header class="header">a</header> -->
-    <% if(metaAtual && userMetas){ %>
-            <div class="cards">
-                <div class="card-item">
-                    <div class="card-title">
-                        <h2>Nome</h2>
-                        <span class="material-symbols-outlined">
-                            sell
-                        </span>
+    <div class="grid-container">
+        <%- include('includes/navbar') %>
+        <% if(metaAtual && userMetas){ %>
+            <main class="main">
+                <div class="cards">
+                    <div class="card-item">
+                        <div class="card-title">
+                            <h2>Nome</h2>
+                            <span class="material-symbols-outlined">
+                                sell
+                            </span>
+                        </div>
+                        <h1><%- metaAtual.nome %></h1>
                     </div>
-                    <h1><%- metaAtual.nome %></h1>
-                </div>
 
-                <div class="card-item">
-                    <div class="card-title">
-                        <h2>Valor</h2>
-                        <span class="material-symbols-outlined">
-                            finance_chip
-                        </span>
+                    <div class="card-item">
+                        <div class="card-title">
+                            <h2>Valor</h2>
+                            <span class="material-symbols-outlined">
+                                finance_chip
+                            </span>
+                        </div>
+                        <h1 id="valorMeta"><%- metaAtual.valorMeta %></h1>
+                        <p id="valorAtual">
+                            <% if(metaAtual.valorAtual==null){ %>
+                                R$ 0,00
+                                <% }else{ %>
+                                    <%- metaAtual.valorAtual %>
+                                        <% } %>
+                        </p>
                     </div>
-                    <h1 id="valorMeta"><%- metaAtual.valorMeta %></h1>
-                    <p id="valorAtual">
-                        <% if(metaAtual.valorAtual==null){ %>
-                            R$ 0,00
-                            <% }else{ %>
-                                <%- metaAtual.valorAtual %>
-                                    <% } %>
-                    </p>
-                </div>
 
-                <div class="card-item">
-                    <div class="card-title">
-                        <h2>Prazo</h2>
-                        <span class="material-symbols-outlined">
-                            calendar_month
-                        </span>
+                    <div class="card-item">
+                        <div class="card-title">
+                            <h2>Prazo</h2>
+                            <span class="material-symbols-outlined">
+                                calendar_month
+                            </span>
+                        </div>
+                        <h1 id="prazoMeta"><%- metaAtual.prazoMeta %></h1>
                     </div>
-                    <h1 id="prazoMeta"><%- metaAtual.prazoMeta %></h1>
-                </div>
 
-                <div class="card-item">
-                    <div class="card-title">
-                        <h2>Progresso</h2>
+                    <div class="card-item">
+                        <div class="card-title">
+                            <h2>Progresso</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="charts">
-                <div class="chart-item info">
-                    <div id="progress-chart"></div>
-                    <div id="">
-                        <h2>Lorem ipsum dolor sit amet.</h2>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo itaque
-                        blanditiis corrupti saepe minima at rem similique animi officia vel illo esse repellendus totam,
-                        quis aut, quos mollitia obcaecati.
-                        Consequuntur reiciendis neque ut quisquam commodi fugiat necessitatibus dolorem aspernatur rem
-                        ad nisi iure officiis nobis suscipit, aliquid doloremque eos exercitationem dolores delectus!
-                        Officiis commodi recusandae error porro sunt ratione.
-                        Eligendi quam doloremque laboriosam, vitae deleniti cupiditate excepturi, quae ullam accusamus
-                        labore optio totam at aperiam delectus consectetur? Dolorum fugit sapiente aspernatur ut unde
-                        molestiae veniam alias quaerat nihil natus!
+                <div class="charts">
+                    <div class="chart-item info">
+                        <div id="progress-chart"></div>
+                        <div id="">
+                            <h2>Lorem ipsum dolor sit amet.</h2>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo itaque
+                            blanditiis corrupti saepe minima at rem similique animi officia vel illo esse repellendus
+                            totam,
+                            quis aut, quos mollitia obcaecati.
+                            Consequuntur reiciendis neque ut quisquam commodi fugiat necessitatibus dolorem aspernatur
+                            rem
+                            ad nisi iure officiis nobis suscipit, aliquid doloremque eos exercitationem dolores
+                            delectus!
+                            Officiis commodi recusandae error porro sunt ratione.
+                            Eligendi quam doloremque laboriosam, vitae deleniti cupiditate excepturi, quae ullam
+                            accusamus
+                            labore optio totam at aperiam delectus consectetur? Dolorum fugit sapiente aspernatur ut
+                            unde
+                            molestiae veniam alias quaerat nihil natus!
+                        </div>
                     </div>
-                </div>
 
-                <div class="chart-item more">
-                    <div class="selecionarMeta">
-                        <label for="escolherMeta">
+                    <div class="chart-item more">
+                        <div class="selecionarMeta">
+                            <label for="escolherMeta">
+                                <div class="inner">
+                                    <h2> Escolha a sua meta: </h2>
+                                    <p></p>
+                                </div>
+                            </label>
+                            <select name="escolherMeta" id="escolherMeta">
+                                <option value="">Atual</option>
+                                <% userMetas.forEach( elemento=> { %>
+                                    <option value="/dashboard/<%- elemento.id %>"><%- elemento.nome %></option>
+                                    <% }) %>
+                                        <option value="/registrarMeta">Adicionar Meta</option>
+                            </select>
+                        </div>
+
+                        <div class="form">
                             <div class="inner">
-                                <h2> Escolha a sua meta: </h2>
+                                <h2> Adicionar Valor: </h2>
                                 <p></p>
                             </div>
-                        </label>
-                        <select name="escolherMeta" id="escolherMeta">
-                            <option value="">Atual</option>
-                            <% userMetas.forEach( elemento=> { %>
-                                <option value="/dashboard/<%- elemento.id %>"><%- elemento.nome %></option>
-                                <% }) %>
-                                    <option value="/registrarMeta">Adicionar Meta</option>
-                        </select>
-                    </div>
-
-                    <div class="form">
-                        <div class="inner">
-                            <h2> Adicionar Valor: </h2>
-                            <p></p>
+                            <form action="/dashboard/<%= metaAtual.id %>" method="post">
+                                <input type="hidden" name="UserId" value="<%= user %>">
+                                <input type="number" name="valorMeta">
+                                <button>Atualizar</button>
+                            </form>
+                            <button class="excluir">Excluir</button>
                         </div>
-                        <form action="/dashboard/<%= metaAtual.id %>" method="post">
-                            <input type="hidden" name="UserId" value="<%= user %>">
-                            <input type="number" name="valorMeta">
-                            <button>Atualizar</button>
-                        </form>
-                        <button class="excluir">Excluir</button>
+
+                        <a href="/sair">Sair</a>
                     </div>
-
-                    <a href="/sair">Sair</a>
                 </div>
+            </main>
+    </div>
+    <% } %>
 
-            </div>
-        </main>
-        <% } %>
-
-            <%- include('includes/footer') %>
+        <%- include('includes/footer') %>

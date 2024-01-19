@@ -31,8 +31,6 @@ exports.logar = async (req, res, next) => {
         const user = new Login(req.body);
         const id = await user.entrar();
 
-        console.log(id);
-
         if (user.errors.length > 0) {
             req.flash('errors', user.errors);
 
@@ -63,8 +61,6 @@ exports.dashboard = async (req, res) => {
             return elemento.id == req.params.id;
         });
 
-        console.log(metaAtual);
-
         res.render('dashboard', { userMetas, metaAtual });
     } catch (error) {
         console.log(error)
@@ -74,7 +70,6 @@ exports.dashboard = async (req, res) => {
 exports.dashboardInicial = async (req, res) => {
     try {
         const userMetas = await Login.buscarMetasdoUserporId(req.session.userId);
-        console.log(userMetas);
 
         const metaAtual = userMetas[0];
 
