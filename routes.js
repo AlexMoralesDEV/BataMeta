@@ -12,6 +12,7 @@ route.get('/sair', somenteUsuarios, logincontroller.sair);
 route.get('/', indexcontroller.index);
 
 route.post('/registrar', logincontroller.registrar);
+route.post('/dashboard/:id', metacontroller.atualizarMeta);
 route.post('/logar', logincontroller.logar);
 route.post('/registrarMeta', somenteUsuarios, metacontroller.registrarMeta);
 

@@ -117,6 +117,14 @@ a:hover {
     height: 100vh;
 }
 
+#valorMeta::before{
+    content: "R$ ";
+}
+
+#valorAtual::before{
+    content: "R$ ";
+}
+
 .main {
     grid-area: main;
 }

@@ -38,6 +38,21 @@ class Meta{
         this.meta = await MetaModel.create(this.body);
         return this.meta;
     }
+
+    async atualizarMeta(id, valorAtual){
+        this.validar();
+        
+        if(this.errors.length > 0) return;
+
+        this.meta = MetaModel.update({valorAtual: valorAtual}, { where: { id: id}});
+        return this.meta;
+    }
+
+    validar(){
+        for(let i in this.body){
+            if(this.body[i] == '') this.errors.push('O campo não pode estar vazio!');
+        }
+    }
 }
 
 module.exports = { MetaModel, Meta };

@@ -14,7 +14,7 @@ escolherMeta.addEventListener('change', (e) => {
 
 function porcentagemMeta() {
 
-  if (valorAtual.innerText == 'R$ 0,00') valorAtual.innerText = 1200;
+  if (valorAtual.innerText == 'R$ 0,00') valorAtual.innerText = 0;
   let resultado = (valorAtual.innerText * 100) / valorMeta.innerText;
   return resultado.toFixed(0);
 }

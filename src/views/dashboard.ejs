@@ -89,12 +89,12 @@
 
                         <div class="form">
                             <div class="inner">
-                                <h2> Adicionar Valor: </h2>
+                                <h2> Valor Atual: </h2>
                                 <p></p>
                             </div>
                             <form action="/dashboard/<%= metaAtual.id %>" method="post">
                                 <input type="hidden" name="UserId" value="<%= user %>">
-                                <input type="number" name="valorMeta">
+                                <input type="number" name="valorAtual">
                                 <button>Atualizar</button>
                             </form>
                             <button class="excluir">Excluir</button>
