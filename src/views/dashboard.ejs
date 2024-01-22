@@ -17,7 +17,10 @@
 
                     <div class="card-item">
                         <div class="card-title">
-                            <h2>Valor</h2>
+                            <div>
+                                <h2>Valor</h2>
+                                <p>Valor Atual</p>
+                            </div>
                             <span class="material-symbols-outlined">
                                 finance_chip
                             </span>
@@ -44,8 +47,9 @@
 
                     <div class="card-item">
                         <div class="card-title">
-                            <h2>Progresso</h2>
+                            <h2>Status</h2>
                         </div>
+                        <p>Em andamento</p>
                     </div>
                 </div>
                 <div class="charts">
@@ -89,15 +93,15 @@
 
                         <div class="form">
                             <div class="inner">
-                                <h2> Valor Atual: </h2>
+                                <h2> Atualizar Valor </h2>
                                 <p></p>
                             </div>
                             <form action="/dashboard/<%= metaAtual.id %>" method="post">
                                 <input type="hidden" name="UserId" value="<%= user %>">
                                 <input type="number" name="valorAtual">
-                                <button>Atualizar</button>
+                                <button>Adicionar</button>
+                                <button formaction="/dashboard/retirar/<%= metaAtual.id %>" class="excluir">Retirar</button>
                             </form>
-                            <button class="excluir">Excluir</button>
                         </div>
 
                         <a href="/sair">Sair</a>

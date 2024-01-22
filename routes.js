@@ -12,7 +12,8 @@ route.get('/sair', somenteUsuarios, logincontroller.sair);
 route.get('/', indexcontroller.index);
 
 route.post('/registrar', logincontroller.registrar);
-route.post('/dashboard/:id', metacontroller.atualizarMeta);
+route.post('/dashboard/retirar/:id', metacontroller.retirarValor);
+route.post('/dashboard/:id', metacontroller.adicionarValor);
 route.post('/logar', logincontroller.logar);
 route.post('/registrarMeta', somenteUsuarios, metacontroller.registrarMeta);
 

@@ -22,10 +22,31 @@ exports.registrarMeta = async (req, res) => {
     });
 };
 
-exports.atualizarMeta = async (req, res) => {
+exports.adicionarValor = async (req, res) => {
     try {
         const meta = new Meta(req.body);
-        const metaAtualizada = await meta.atualizarMeta(req.params.id, req.body.valorAtual);
+        const metaAtualizada = await meta.adicionarValor(req.params.id, req.body.valorAtual);
+
+        if(meta.errors.length > 0) {
+            req.flash('errors', meta.errors);
+            req.session.save(() => {
+                res.redirect('back');
+            });
+            return;
+        };
+
+        req.session.save(() => {
+            res.redirect('back');
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.retirarValor = async (req, res) => {
+    try {
+        const meta = new Meta(req.body);
+        const metaAtualizada = await meta.retirarValor(req.params.id, req.body.valorAtual);
 
         if(meta.errors.length > 0) {
             req.flash('errors', meta.errors);

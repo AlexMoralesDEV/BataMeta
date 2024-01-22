@@ -39,10 +39,46 @@ class Meta{
         return this.meta;
     }
 
-    async atualizarMeta(id, valorAtual){
+    static async encontrarMeta(id){
+        const meta = await MetaModel.findOne({ where: { id: id}});
+        return meta;
+    }
+
+    async adicionarValor(id, valorAtual){
         this.validar();
         
         if(this.errors.length > 0) return;
+
+        const meta = await Meta.encontrarMeta(id)
+        const valorMeta = Number(meta.valorAtual);
+        const valorTotal = Number(meta.valorMeta);
+        
+        valorAtual = valorMeta + Number(valorAtual);
+        
+        if(valorAtual > valorTotal) {
+            this.errors.push('Valor ultrapassa a meta!');
+            valorAtual = valorTotal;
+        };
+        
+        this.meta = MetaModel.update({valorAtual: valorAtual}, { where: { id: id}});
+        return this.meta;
+    }
+
+    async retirarValor(id, valorAtual){
+        this.validar();
+        
+        if(this.errors.length > 0) return;
+
+        const meta = await Meta.encontrarMeta(id)
+        const valorMeta = Number(meta.valorAtual);
+        const valorTotal = Number(meta.valorMeta);
+        
+        valorAtual = Number(valorMeta) - Number(valorAtual);
+        
+        if(valorAtual <= 0) {
+            this.errors.push('Valor retirado é maior do que o valor atual!');
+            valorAtual = 0;
+        };
 
         this.meta = MetaModel.update({valorAtual: valorAtual}, { where: { id: id}});
         return this.meta;
