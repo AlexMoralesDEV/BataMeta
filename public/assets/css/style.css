@@ -157,7 +157,7 @@ a:hover {
 }
 
 .menu ul li span.material-symbols-outlined{
-    font-size: 1.7rem !important;
+    font-size: 1.1rem !important;
     display: none;
 }
 
@@ -274,6 +274,10 @@ option:hover {
     outline: none;
     border: none;
     margin: 10px 0;
+}
+
+#dados p{
+    padding-top: 10px;
 }
 
 .form button {
