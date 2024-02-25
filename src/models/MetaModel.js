@@ -71,7 +71,6 @@ class Meta{
 
         const meta = await Meta.encontrarMeta(id)
         const valorMeta = Number(meta.valorAtual);
-        const valorTotal = Number(meta.valorMeta);
         
         valorAtual = Number(valorMeta) - Number(valorAtual);
         
