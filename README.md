@@ -27,7 +27,7 @@ Bem-vindo ao BataMeta, sua ferramenta pessoal para conquistar suas metas finance
 
 ## Como Executar o Projeto Atualmente
 
-1. Clone o repositório: `git clone https://github.com/AlexMoralesDEV/BataMeta.git`
+1. Clone o repositório: `git clone https://github.com/Caahmos/BataMeta.git`
 2. Acesse o diretório do projeto: `cd BataMeta`
 3. Instale as dependências: `npm install`
 4. Configure as informações do banco de dados no arquivo `db/conne.js`.
